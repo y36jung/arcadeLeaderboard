@@ -2,8 +2,6 @@
 const nextConfig = {
   output: 'export',
   reactStrictMode: false,
-  distDir: 'dist'
 };
 
-module.exports = nextConfig
-//export default nextConfig;
+export default nextConfig;

@@ -2,7 +2,9 @@
 const nextConfig = {
   //output: 'export',
   reactStrictMode: false,
-  distDir: 'dist'
+  distDir: 'dist',
+  basePath: '/arcadeLeaderboard',
+  assetPrefix: '/arcadeLeaderboard'
 };
 
 export default nextConfig;

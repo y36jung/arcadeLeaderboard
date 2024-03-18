@@ -27,7 +27,7 @@ export async function getServerSideProps({query}) {
     }
 }
 
-export default function Post({ leaderboardObjects }) {
+export default function Home({ leaderboardObjects }) {
   const router = useRouter();
   const size = leaderboardObjects.length;
   

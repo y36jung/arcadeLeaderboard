@@ -4,7 +4,6 @@ const nextConfig = {
   reactStrictMode: false,
   distDir: 'dist',
   basePath: '/arcadeLeaderboard',
-  assetPrefix: '/arcadeLeaderboard'
 };
 
 export default nextConfig;

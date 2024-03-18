@@ -1,5 +1,4 @@
 import { google } from 'googleapis';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -9,7 +8,6 @@ export async function getServerSideProps({query}) {
 
     const sheets = google.sheets({ version: 'v4', auth});
 
-    const {id} = query;
     const range = `SORTED!A2:E`;
 
     const response = await sheets.spreadsheets.values.get({
@@ -72,9 +70,6 @@ export default function Post({ leaderboardObjects }) {
 
   return (
     <div className='main-container'>
-      <Head>
-        <link href="https://fonts.cdnfonts.com/css/arcade-classic" rel="stylesheet"/>           
-      </Head>
       <div className='title'>High Score</div>
       <table className='table-container'>
         <thead className='title-body'>

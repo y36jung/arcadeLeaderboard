@@ -1,0 +1,101 @@
+:root {
+    --numOfScores: 0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    //border: 6px solid green;
+    font-family: 'ArcadeClassic', sans-serif;
+
+    .title {
+        padding-top: 7.5vh;
+        padding-bottom: 7.5vh;
+        font-size: 3em;
+        //border: 3px solid grey;
+        width: 100vw;
+        text-align: center;
+        background-color: black;
+    }
+
+    .table-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100vw;
+        padding-bottom: 20vh;
+        font-size: 1.5em;
+
+        .col-rank {
+            width: 7vw !important;
+        }
+
+        .col-name {
+            width: 15vw !important;
+        }
+
+        .title-body {
+            background-color: black;
+            //border: 5px solid cyan;
+    
+            th {
+                //border: 3px solid red;
+                //color: red;
+                padding: 1.5vh;
+                width: 10vw;
+            }
+        }
+    
+        .score-body {
+            //border: 5px solid orange;
+            z-index: -1;
+            position: absolute;
+            top: 28vh;
+
+            td {
+                //border: 3px solid pink;
+                //color: green;
+                padding: 1.5vh;
+                width: 10vw;
+                height: 7vh;
+            }
+
+
+            .first {
+                color: #FFD700;
+            }
+
+            .second {
+                color: #C0C0C0;
+            }
+
+            .third {
+                color: #CD7F32;
+            }
+        }    
+    }
+
+    .bottom-box {
+        position: absolute;
+        //border: 3px solid yellow;
+        background-color: black;
+        width: 100vw;
+        height: 20vh;
+        bottom: 0vh;
+    }
+
+    .move-down {
+        animation: scroll-down calc(var(--numOfScores) * 0.5s) linear
+    }
+}
+
+@keyframes scroll-down {
+    from {top: calc(var(--numOfScores) * -7vh)}
+}
+
+
+

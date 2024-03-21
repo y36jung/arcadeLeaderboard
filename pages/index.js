@@ -129,6 +129,8 @@ export default function Home({ leaderboardObjects, goldenTimeBool }) {
               rankColor = 'second'
             } else if (rank === 3) {
               rankColor = 'third'
+            } else {
+              rankColor = 'non-rank'
             }
               
             return (

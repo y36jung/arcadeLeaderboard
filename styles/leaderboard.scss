@@ -66,7 +66,6 @@
 
         .col-rank {
             width: 7vw !important;
-            color: white;
         }
 
         .col-name {
@@ -83,6 +82,7 @@
                 //color: red;
                 padding: 1.5vh;
                 width: 17vw;
+                color: white;
             }
         }
 
@@ -99,6 +99,9 @@
                 height: 7vh;
             }
 
+            .non-rank {
+                color: white;
+            }
 
             .first {
                 color: #FFD700;

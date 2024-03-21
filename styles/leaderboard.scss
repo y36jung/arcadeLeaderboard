@@ -31,11 +31,16 @@
     //border: 6px solid green;
     font-family: 'Arcade Normal', sans-serif;
     overflow: hidden;
+    background-color: black;
 }
 
 .container.leaderboard {
+    height: 100vh;
+    background-color: black;
 
     .title {
+        position: absolute;
+        top: 0vh;
         padding-top: 7.5vh;
         padding-bottom: 7.5vh;
         font-size: 3em;
@@ -44,9 +49,12 @@
         text-align: center;
         background-color: black;
         color: white;
+        z-index: 2;
     }
 
     .table-container {
+        position: absolute;
+        top: 22vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -63,11 +71,11 @@
 
         .col-name {
             width: 20vw !important;
-            color: white;
         }
 
         .title-body {
             background-color: black;
+            z-index: 1;
             //border: 5px solid cyan;
 
             th {
@@ -80,9 +88,8 @@
 
         .score-body {
             //border: 5px solid orange;
-            z-index: -1;
             position: absolute;
-            top: 30vh;
+            top: 8vh;
 
             td {
                 //border: 3px solid pink;
@@ -114,6 +121,7 @@
         width: 100vw;
         height: 20vh;
         bottom: 0vh;
+        z-index: 1;
     }
 
     .move-down {

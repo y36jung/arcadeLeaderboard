@@ -1,4 +1,23 @@
-@import url('https://fonts.cdnfonts.com/css/arcade');
+@font-face {
+    font-family: arcade interlaced;
+    font-style: normal;
+    font-weight: 400;
+    src: local('Arcade Interlaced'), url(https://fonts.cdnfonts.com/s/6068/ARCADE_I.woff) format('woff')
+}
+
+@font-face {
+    font-family: arcade normal;
+    font-style: normal;
+    font-weight: 400;
+    src: local('Arcade Normal'), url(https://fonts.cdnfonts.com/s/6068/ARCADE_N.woff) format('woff')
+}
+
+@font-face {
+    font-family: arcade rounded;
+    font-style: normal;
+    font-weight: 400;
+    src: local('Arcade Rounded'), url(https://fonts.cdnfonts.com/s/6068/ARCADE_R.woff) format('woff')
+}
 
 :root {
     --numOfScores: 0;
@@ -47,7 +66,7 @@
         .title-body {
             background-color: black;
             //border: 5px solid cyan;
-    
+
             th {
                 //border: 3px solid red;
                 //color: red;
@@ -55,7 +74,7 @@
                 width: 17vw;
             }
         }
-    
+
         .score-body {
             //border: 5px solid orange;
             z-index: -1;
@@ -82,7 +101,7 @@
             .third {
                 color: #CD7F32;
             }
-        }    
+        }
     }
 
     .bottom-box {
@@ -100,7 +119,9 @@
 }
 
 @keyframes scroll-down {
-    from {top: calc(var(--numOfScores) * -7vh)}
+    from {
+        top: calc(var(--numOfScores) * -7vh)
+    }
 }
 
 .container.golden-time {
@@ -148,12 +169,10 @@
         flex-direction: column;
         align-items: center;
 
-        .raffleA {
-            
-        }
+        .raffleA {}
 
         .podiumA {
-            background-color:#FFD700;
+            background-color: #FFD700;
             margin-top: 5vh;
             width: 15vw;
             margin-bottom: -70vh;
@@ -165,7 +184,7 @@
 
             .reveal-button {
                 margin-top: 5vh;
-                align-self: center;       
+                align-self: center;
             }
         }
     }
@@ -178,9 +197,7 @@
         flex-direction: column;
         align-items: center;
 
-        .raffleB {
-            
-        }
+        .raffleB {}
 
         .podiumB {
             background-color: #C0C0C0;
@@ -195,7 +212,7 @@
 
             .reveal-button {
                 margin-top: 5vh;
-                align-self: center;       
+                align-self: center;
             }
         }
     }
@@ -208,10 +225,8 @@
         flex-direction: column;
         align-items: center;
 
-        .raffleC {
-            
-        }
-    
+        .raffleC {}
+
         .podiumC {
             background-color: #CD7F32;
             margin-top: 5vh;
@@ -225,7 +240,7 @@
 
             .reveal-button {
                 margin-top: 5vh;
-                align-self: center;       
+                align-self: center;
             }
         }
 
@@ -237,7 +252,7 @@
     .slide-up.A {
         animation: podium-entrance-A 1s ease-in-out;
         animation-fill-mode: forwards;
-      
+
     }
 
     .slide-up.B {
@@ -252,7 +267,7 @@
     }
 
 
-    .floating {  
+    .floating {
         animation-name: floating;
         animation-duration: 3s;
         animation-iteration-count: infinite;
@@ -263,22 +278,33 @@
 }
 
 @keyframes podium-entrance-A {
-    to {bottom: 50vh}
+    to {
+        bottom: 50vh
+    }
 }
 
 @keyframes podium-entrance-B {
-    to {bottom: 40vh}
+    to {
+        bottom: 40vh
+    }
 }
 
 @keyframes podium-entrance-C {
-    to {bottom: 30vh}
+    to {
+        bottom: 30vh
+    }
 }
 
 @keyframes floating {
-    0% { transform: translate(0,  0px); }
-    50%  { transform: translate(0, 15px); }
-    100%   { transform: translate(0, -0px); }    
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    50% {
+        transform: translate(0, 15px);
+    }
+
+    100% {
+        transform: translate(0, -0px);
+    }
 }
-
-
-

@@ -67,7 +67,7 @@ export default function Home({ goldenTimeBool, raffleWinnerBool }) {
 
   //Countdown timer for Golden Time
   useEffect(() => {
-    if (goldenTimeBool === 'TRUE' && countDown >= 0) {
+    if (goldenTimeBool === 'TRUE' && countDown > 0) {
       const interval = setInterval(() => {
         setCountDown(prevState => prevState - 1)
       }, 10);
@@ -76,27 +76,32 @@ export default function Home({ goldenTimeBool, raffleWinnerBool }) {
     }
   }, [])
 
+  useEffect(() => {
+    if (countDown < 0 ) {
+      router.push('/gameOver')
+    }
+  }, [countDown])
+
   return (
-    <>
-        { countDown >= 0 ? (
-            <div className='container golden-time'>
-                <div className='title'>GOLDEN TIME!</div>
-                <div className='golden-timer'>
-                    {addZeroPrefix(secondsToTimer(countDown).minute)}: 
-                    {addZeroPrefix(secondsToTimer(countDown).seconds)}: 
-                    {addZeroPrefix(secondsToTimer(countDown).miliseconds)}
-                </div>
-                <div className='subtitle'>All coins earned are doubled!</div>
-            </div>
-        ) : (
-            <div className='container game-over'>
-                <button onClick={() => router.push('/raffleWinner')}>Announce Raffle Winners</button>
-                <div className='title'>
-                    Game Over
-                </div>
-                <div className='subtitle'>Please stop all games as we prepare for the raffles!</div>
-            </div>
-        )}
-    </>
+    <div className='container golden-time'>
+        <div className='title'>GOLDEN TIME!</div>
+        <div className='golden-timer'>
+          { countDown > 0 ? (
+            <>
+              {addZeroPrefix(secondsToTimer(countDown).minute)}: 
+              {addZeroPrefix(secondsToTimer(countDown).seconds)}: 
+              {addZeroPrefix(secondsToTimer(countDown).miliseconds)}
+            </>
+          ) : (
+            <>
+              {addZeroPrefix(0)}: 
+              {addZeroPrefix(0)}: 
+              {addZeroPrefix(0)}
+            </>
+          )}
+            
+        </div>
+        <div className='subtitle'>All coins earned are doubled!</div>
+    </div>
   )
 }

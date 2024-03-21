@@ -43,7 +43,6 @@ export default function Home({ leaderboardObjects, goldenTimeBool }) {
   // 'Soft' reloards page and fetched fresh data
   const refreshData = () => {
     router.push(router.asPath);
-    console.log('Data has been refreshed!11', goldenTimeBool)
   }
 
   // Resets and restarts leaderboard animation

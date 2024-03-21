@@ -4,7 +4,18 @@ import { useEffect, useState } from 'react';
 
 export async function getServerSideProps({query}) {
 
-    const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']})
+  const gcsKey = JSON.parse(
+    Buffer.from(process.env.GOOGLE_SERVICE_KEY, 'base64').toString()
+  );
+
+  const auth = new google.auth.GoogleAuth({
+    credentials: {
+      client_email: gcsKey.client_email,
+      private_key: gcsKey.private_key
+    },
+    scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']
+  })
+
 
     const sheets = google.sheets({ version: 'v4', auth});
 

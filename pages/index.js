@@ -1,6 +1,6 @@
 import { google } from 'googleapis';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export async function getServerSideProps({query}) {
 
@@ -8,46 +8,59 @@ export async function getServerSideProps({query}) {
 
     const sheets = google.sheets({ version: 'v4', auth});
 
-    const range = `SORTED!A2:E`;
+    const raffleDataRange = `SORTED!B2:F`;
+    const goldenTimeCheckRange = 'RECORDED!J8'
 
-    const response = await sheets.spreadsheets.values.get({
-        spreadsheetId: process.env.SHEET_ID,
-        range,
+    const raffleDataResponse = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.SHEET_ID,
+      range: raffleDataRange
     })
 
-    const leaderboardArray = response.data.values;
+    const goldenTimeResponse = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.SHEET_ID,
+      range: goldenTimeCheckRange
+    })
 
+    const leaderboardArray = raffleDataResponse.data.values;
     const leaderboardObjects = Object.assign(leaderboardArray.map(([name, nickname, raffleA, raffleB, raffleC]) => 
                                                 ({'name': name, 'nickname': nickname, 'raffleA': raffleA, 'raffleB': raffleB, 'raffleC': raffleC})
                                             ))
+
+    const goldenTimeBool = goldenTimeResponse.data.values[0][0];
+
     return {
       props: {
-        leaderboardObjects
+        leaderboardObjects,
+        goldenTimeBool
       }
     }
 }
 
-export default function Home({ leaderboardObjects }) {
+export default function Home({ leaderboardObjects, goldenTimeBool }) {
   const router = useRouter();
   const size = leaderboardObjects.length;
   
   // 'Soft' reloards page and fetched fresh data
   const refreshData = () => {
     router.push(router.asPath);
+    console.log('Data has been refreshed!11', goldenTimeBool)
   }
 
+  // Resets and restarts leaderboard animation
   const restartAnimation = () => {
-    if (typeof document !== "undefined") {
+    if (typeof document !== "undefined" && goldenTimeBool === 'FALSE') {
       let el = document.getElementById('board-animation');
-      el.classList.add('move-down')
-      document.documentElement.style.setProperty("--numOfScores", size)
-      console.log('size', size)
-      el.addEventListener('animationend', function() {
-        el.classList.remove('move-down')
-      })
+      if (el) {
+        el.classList.add('move-down')
+        document.documentElement.style.setProperty("--numOfScores", size)
+        el.addEventListener('animationend', function() {
+          el.classList.remove('move-down')
+        })
+      }
     }
   }
 
+  // Adds rank suffix behind each rank
   const rankSuffix = (rank) => {
     let suffix = 'th'
     if (rank % 10 === 1) {
@@ -60,17 +73,33 @@ export default function Home({ leaderboardObjects }) {
     return suffix
   }
 
+  // Restart animation whenever page is rendered/re-rendered
   restartAnimation()
+
+  // Retreiving fresh data from Google Sheets per interval
   useEffect(() => {
-    const interval = setInterval(() => {
-      refreshData()
-      console.log('Data has been refreshed!')
-    }, (500 * size) + 5000);
+    let timeInterval = (500 * size) + 5000
+    if (goldenTimeBool !== 'TRUE') {
+      const interval = setInterval(() => {
+        refreshData()
+      }, timeInterval);
+  
+      return () => clearInterval(interval); 
+    }
+
   }, []) 
 
+  useEffect(() => {
+    // Redirect to Golden Time Page
+    if (goldenTimeBool === 'TRUE') {
+      console.log('To golden time')
+      router.push('/goldenTime')
+    }
+  }, [goldenTimeBool])
+
   return (
-    <div className='main-container'>
-      <div className='title'>High Score</div>
+    <div className='container leaderboard'>
+      <div className='title'>HIGH SCORE</div>
       <table className='table-container'>
         <thead className='title-body'>
           <tr>
@@ -92,7 +121,7 @@ export default function Home({ leaderboardObjects }) {
             } else if (rank === 3) {
               rankColor = 'third'
             }
-             
+              
             return (
               <tr className={rankColor}>
                 <td className='col-rank'>

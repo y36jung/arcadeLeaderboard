@@ -1,16 +1,20 @@
-@import url(https://fonts.cdnfonts.com/css/arcade-classic);
+@import url('https://fonts.cdnfonts.com/css/arcade');
 
 :root {
     --numOfScores: 0;
 }
 
-.main-container {
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     //border: 6px solid green;
-    font-family: 'ArcadeClassic', sans-serif;
+    font-family: 'Arcade Normal', sans-serif;
+    overflow: hidden;
+}
+
+.container.leaderboard {
 
     .title {
         padding-top: 7.5vh;
@@ -37,7 +41,7 @@
         }
 
         .col-name {
-            width: 15vw !important;
+            width: 20vw !important;
         }
 
         .title-body {
@@ -48,7 +52,7 @@
                 //border: 3px solid red;
                 //color: red;
                 padding: 1.5vh;
-                width: 10vw;
+                width: 17vw;
             }
         }
     
@@ -56,13 +60,13 @@
             //border: 5px solid orange;
             z-index: -1;
             position: absolute;
-            top: 28vh;
+            top: 30vh;
 
             td {
                 //border: 3px solid pink;
                 //color: green;
                 padding: 1.5vh;
-                width: 10vw;
+                width: 17vw;
                 height: 7vh;
             }
 
@@ -97,6 +101,39 @@
 
 @keyframes scroll-down {
     from {top: calc(var(--numOfScores) * -7vh)}
+}
+
+.container.golden-time {
+    height: 100vh;
+
+    .title {
+        font-size: 6.5em;
+        color: #FFD700;
+
+    }
+
+    .golden-timer {
+        font-size: 6em;
+        padding-top: 15vh;
+        padding-bottom: 15vh;
+    }
+
+    .subtitle {
+        font-size: 2em;
+    }
+}
+
+.container.game-over {
+    height: 100vh;
+
+    .title {
+        font-size: 6.5em;
+        padding-bottom: 5vh;
+    }
+
+    .subtitle {
+        font-size: 1.5em;
+    }
 }
 
 

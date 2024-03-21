@@ -43,12 +43,12 @@ export default function Home({ goldenTimeBool, raffleWinnerBool }) {
     const minute = Math.floor(ms / 6000)
     const seconds = Math.floor((ms % 6000) / 100)
     const miliseconds = ms % 100
-    const countDown = {
+    const countTimer = {
         minute: minute,
         seconds: seconds,
         miliseconds: miliseconds
     }
-    return countDown
+    return countTimer
   }
 
   // Adds zero in front of single digit numbers

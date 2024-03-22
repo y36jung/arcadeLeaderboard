@@ -72,11 +72,11 @@ export default function Home({ leaderboardObjects, goldenTimeBool }) {
   // Adds rank suffix behind each rank
   const rankSuffix = (rank) => {
     let suffix = 'th'
-    if (rank % 10 === 1) {
+    if (rank % 10 === 1 && rank % 100 !== 11) {
       suffix = 'st' 
-    } else if (rank % 10 === 2) {
+    } else if (rank % 10 === 2 && rank % 100 !== 12) {
       suffix = 'nd'
-    } else if (rank % 10 === 3) {
+    } else if (rank % 10 === 3 && rank % 100 !== 13) {
       suffix = 'rd'
     }
     return suffix

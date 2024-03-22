@@ -158,10 +158,10 @@ export default function Home({ raffleWinnerArray, raffleAUsers, raffleBUsers, ra
           <div className='raffleA floating'>{podiumA}</div>
           <div className='podiumA'>
             { congratsA && (
-              <div>
+              <div className='podium-congrats'>
                 <div>Congratulations</div>
                 <br></br>
-                <div> {podiumA}!</div>
+                <div>{podiumA}!</div>
               </div>
             )}
             <button className='reveal-button' onClick={() => randomNames('A')}>Reveal Raffle A Winner</button>
@@ -171,10 +171,10 @@ export default function Home({ raffleWinnerArray, raffleAUsers, raffleBUsers, ra
           <div className='raffleB floating'>{podiumB}</div>
           <div className='podiumB'>
             { congratsB && (
-              <div>
+              <div className='podium-congrats'> 
                 <div>Congratulations</div>
                 <br></br>
-                <div> {podiumB}!</div>
+                <div>{podiumB}!</div>
               </div>
             )}
             <button className='reveal-button' onClick={() => randomNames('B')}>Reveal Raffle B Winner</button>
@@ -184,10 +184,10 @@ export default function Home({ raffleWinnerArray, raffleAUsers, raffleBUsers, ra
           <div className='raffleC floating'>{podiumC}</div>
           <div className='podiumC'>
             { congratsC && (
-              <div>
+              <div className='podium-congrats'>
                 <div>Congratulations</div>
                 <br></br>
-                <div> {podiumC}!</div>
+                <div>{podiumC}!</div>
               </div>
             )}
             <button className='reveal-button' onClick={() => randomNames('C')}>Reveal Raffle C Winner</button>

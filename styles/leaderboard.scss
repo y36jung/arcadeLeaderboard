@@ -279,16 +279,23 @@
         }
     }
 
+    .podium-congrats {
+        color: black;
+        padding-top: 5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
     .slide-up.A {
         animation: podium-entrance-A 1s ease-in-out;
         animation-fill-mode: forwards;
-
     }
 
     .slide-up.B {
         animation: podium-entrance-B 1s ease-in-out;
         animation-fill-mode: forwards;
-
     }
 
     .slide-up.C {
@@ -303,8 +310,6 @@
         animation-iteration-count: infinite;
         animation-timing-function: ease-in-out;
     }
-
-
 }
 
 @keyframes podium-entrance-A {

@@ -1,5 +1,6 @@
 import { google } from 'googleapis';
 import { useState } from 'react';
+import { useSound } from 'use-sound';
 
 export async function getServerSideProps({query}) {
 
@@ -14,7 +15,6 @@ export async function getServerSideProps({query}) {
     },
     scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']
   })
-
 
     const sheets = google.sheets({ version: 'v4', auth});
 
@@ -77,6 +77,20 @@ export default function Home({ raffleWinnerArray, raffleAUsers, raffleBUsers, ra
     const [podiumB, setPodiumB] = useState('Raffle B Winner')
     const [podiumC, setPodiumC] = useState('Raffle C Winner')
 
+    const [congratsA, setCongratsA] = useState(false);
+    const [congratsB, setCongratsB] = useState(false);
+    const [congratsC, setCongratsC] = useState(false);
+
+    const [slotSfx] = useSound('/sounds/slot-machine-sound.mp3', {
+      interrupt: true
+    })
+    const [raffleASfx] = useSound('/sounds/raffleASfx.mp3', {
+      interrupt: true
+    })
+    const [raffleBCSfx] = useSound('/sounds/raffleBCSfx.mp3', {
+      interrupt: true
+    })
+
     const getRandomInt = (max) => {
       return Math.floor(Math.random() * max);
     }
@@ -88,12 +102,15 @@ export default function Home({ raffleWinnerArray, raffleAUsers, raffleBUsers, ra
       if (pod === 'A') {
         raffleUsers = raffleAUsers
         raffleWinner = raffleAWinner
+        setCongratsA(false)
       } else if (pod === 'B') {
         raffleUsers = raffleBUsers
         raffleWinner = raffleBWinner
+        setCongratsB(false)
       } else if (pod === 'C') {
         raffleUsers = raffleCUsers
         raffleWinner = raffleCWinner
+        setCongratsC(false)
       }
 
       let waitTime = 0
@@ -109,15 +126,28 @@ export default function Home({ raffleWinnerArray, raffleAUsers, raffleBUsers, ra
           let user = raffleUsers[i]
           if (x === iter - 1) {
             user = raffleWinner
+            if (pod === 'A') {
+              raffleASfx()
+              setCongratsA(true)
+            } else {
+              raffleBCSfx()
+              if (pod === 'B') {
+                setCongratsB(true)
+              } else if (pod === 'C') {
+                setCongratsC(true)
+              }
+            }
+          } else {
+            slotSfx()
           }
           if (pod === 'A') {
-            setPodiumA(user)
+            setPodiumA(user)            
           } else if (pod === 'B') {
-            setPodiumB(user)
+            setPodiumB(user)          
           } else if (pod === 'C') {
             setPodiumC(user)
           }
-          console.log(podiumA)
+          
         }, waitTime)
       }
     }
@@ -127,18 +157,39 @@ export default function Home({ raffleWinnerArray, raffleAUsers, raffleBUsers, ra
         <div id='A' className='slide-up A'>
           <div className='raffleA floating'>{podiumA}</div>
           <div className='podiumA'>
+            { congratsA && (
+              <div>
+                <div>Congratulations</div>
+                <br></br>
+                <div> {podiumA}!</div>
+              </div>
+            )}
             <button className='reveal-button' onClick={() => randomNames('A')}>Reveal Raffle A Winner</button>
           </div>
         </div>
         <div id='B' className='slide-up B'>
           <div className='raffleB floating'>{podiumB}</div>
           <div className='podiumB'>
+            { congratsB && (
+              <div>
+                <div>Congratulations</div>
+                <br></br>
+                <div> {podiumB}!</div>
+              </div>
+            )}
             <button className='reveal-button' onClick={() => randomNames('B')}>Reveal Raffle B Winner</button>
           </div>
         </div>
         <div id='C' className='slide-up C'>
           <div className='raffleC floating'>{podiumC}</div>
           <div className='podiumC'>
+            { congratsC && (
+              <div>
+                <div>Congratulations</div>
+                <br></br>
+                <div> {podiumC}!</div>
+              </div>
+            )}
             <button className='reveal-button' onClick={() => randomNames('C')}>Reveal Raffle C Winner</button>
           </div>
         </div>

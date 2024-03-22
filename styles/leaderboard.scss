@@ -192,12 +192,13 @@
 
         .raffleA {
             color: white;
+            font-size: 1.2em;
         }
 
         .podiumA {
             background-color: #FFD700;
             margin-top: 5vh;
-            width: 15vw;
+            width: 25vw;
             margin-bottom: -70vh;
             height: 70vh;
 
@@ -214,7 +215,7 @@
 
     #B {
         position: absolute !important;
-        right: 25vw;
+        right: 6vw;
         bottom: 0vh;
         display: flex;
         flex-direction: column;
@@ -222,12 +223,13 @@
 
         .raffleB {
             color: white;
+            font-size: 1.2em;
         }
 
         .podiumB {
             background-color: #C0C0C0;
             margin-top: 5vh;
-            width: 15vw;
+            width: 25vw;
             margin-bottom: -70vh;
             height: 70vh;
 
@@ -245,19 +247,20 @@
     #C {
         position: absolute !important;
         bottom: 0vh;
-        left: 25vw;
+        left: 6vw;
         display: flex;
         flex-direction: column;
         align-items: center;
 
         .raffleC {
             color: white;
+            font-size: 1.2em;
         }
 
         .podiumC {
             background-color: #CD7F32;
             margin-top: 5vh;
-            width: 15vw;
+            width: 25vw;
             margin-bottom: -70vh;
             height: 70vh;
 

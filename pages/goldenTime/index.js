@@ -16,12 +16,9 @@ export async function getServerSideProps({query}) {
     scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']
   })
 
-
     const sheets = google.sheets({ version: 'v4', auth});
 
-    const goldenTimeCheckRange = 'RECORDED!J8'
-
-    const raffleWinnerRange = 'RECORDED!J9'
+    const goldenTimeCheckRange = 'RECORDED!J8:J9'
 
     const goldenTimeResponse = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SHEET_ID,
@@ -29,26 +26,19 @@ export async function getServerSideProps({query}) {
     })
 
     const goldenTimeBool = goldenTimeResponse.data.values[0][0];
-
-    const raffleWinnerResponse = await sheets.spreadsheets.values.get({
-      spreadsheetId: process.env.SHEET_ID,
-      range: raffleWinnerRange
-    })
-
-    const raffleWinnerBool = raffleWinnerResponse.data.values[0][0]
+    const goldenTimeMinutes = goldenTimeResponse.data.values[1][0];
 
     return {
       props: {
         goldenTimeBool,
-        raffleWinnerBool
+        goldenTimeMinutes
       }
     }
 }
 
-export default function Home({ goldenTimeBool, raffleWinnerBool }) {
+export default function Home({ goldenTimeBool, goldenTimeMinutes }) {
   const router = useRouter();
-  const goldenTimeMinutes = 0.5
-  const [countDown, setCountDown] = useState(goldenTimeMinutes * 6000)
+  const [countDown, setCountDown] = useState(goldenTimeMinutes * 6000);
 
   const secondsToTimer = (ms) => {
     const minute = Math.floor(ms / 6000)

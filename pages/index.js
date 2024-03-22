@@ -101,7 +101,6 @@ export default function Home({ leaderboardObjects, goldenTimeBool }) {
   useEffect(() => {
     // Redirect to Golden Time Page
     if (goldenTimeBool === 'TRUE') {
-      console.log('To golden time')
       router.push('/goldenTime')
     }
   }, [goldenTimeBool])

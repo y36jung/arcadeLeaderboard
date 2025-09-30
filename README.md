@@ -5,10 +5,10 @@ This is a one-week side project coded to create a website that simulates an arca
 
 
 ## 📚 Tech Stack
-# 👁️ Frontend:
+### 👁️ Frontend:
 - React
 
-# 🤝 Backend:
+### 🤝 Backend:
 - Google Cloud Platform (Cloud)
 - Google Sheet (Database)
 

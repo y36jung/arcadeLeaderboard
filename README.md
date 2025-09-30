@@ -16,6 +16,10 @@ This is a one-week side project coded to create a website that simulates an arca
 ## 🛠️ Functionalities
 - Values shown on the leaderboard are fetched from a Google Sheet file via Google API
 - Users are able to make edits to the appropriate cell values in the Google Sheet, which then the values on the web app would update periodically
+- Scores of players are sorted based off of the sum the points of all raffle tickets where:
+    - Raffle A is valued at 5 points
+    - Raffle B is valued at 3 points
+    - Raffle C is valued at 2 points
 
 The links below can be accessed to test such functionalities:
 - [Web Application (hosted via Vercel)](https://arcade-leaderboard.vercel.app)

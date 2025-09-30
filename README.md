@@ -14,8 +14,8 @@ This is a one-week side project coded to create a website that simulates an arca
 
 
 ## 🛠️ Functionalities
-- Values shown on the leaderboard are fetched from a Google Sheet file via Google API. \
-- Users are able to make edits to the appropriate cell values in the Google Sheet, which then the values on the web app would update periodically.
+- Values shown on the leaderboard are fetched from a Google Sheet file via Google API
+- Users are able to make edits to the appropriate cell values in the Google Sheet, which then the values on the web app would update periodically
 
 The links below can be accessed to test such functionalities:
 - [Web Application (hosted via Vercel)](https://arcade-leaderboard.vercel.app)

@@ -1,7 +1,7 @@
 # 🎮 Arcade Leaderboard Website
 
 ## ✨ Motivation
-This is a one-week side project coded to create a website that simulates an arcade leaderboard for a club social event. \
+This is a one-week side project coded to create a website that simulates an arcade leaderboard for a club social event.
 
 
 ## 📚 Tech Stack

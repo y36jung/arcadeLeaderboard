@@ -16,5 +16,8 @@
     "react-dom": "^19.1.1",
     "sass": "^1.72.0",
     "use-sound": "^4.0.1"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.3"
   }
 }

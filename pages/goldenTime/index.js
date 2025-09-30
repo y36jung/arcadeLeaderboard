@@ -25,8 +25,8 @@ export async function getServerSideProps({query}) {
       range: goldenTimeCheckRange
     })
 
-    const goldenTimeBool = goldenTimeResponse.data.values[0][0];
-    const goldenTimeMinutes = goldenTimeResponse.data.values[1][0];
+    const goldenTimeBool = goldenTimeResponse.data.values ? goldenTimeResponse.data.values[0][0]: 'FALSE';
+    const goldenTimeMinutes = goldenTimeResponse.data.values? goldenTimeResponse.data.values[1][0]: 0;
 
     return {
       props: {

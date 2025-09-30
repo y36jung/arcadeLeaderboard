@@ -36,7 +36,7 @@ export async function getServerSideProps({query}) {
                                                 ({'name': name, 'nickname': nickname, 'raffleA': raffleA, 'raffleB': raffleB, 'raffleC': raffleC})
                                             ))
 
-    const goldenTimeBool = goldenTimeResponse.data.values[0][0];
+    const goldenTimeBool = goldenTimeResponse.data.values ? goldenTimeResponse.data.values[0][0] : 'FALSE';
 
     return {
       props: {
